@@ -24,7 +24,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ## Screen shots
 
 ### Initial screen
-![Alt text](9dt-snaps/initial-screen.jpg?raw=true "Initial screen")
+![Alt text](9dt-snaps/initial-screen.JPG?raw=true "Initial screen")
 
 ### Start game and choose play first or not
 ![Alt text](9dt-snaps/choose-playfirst.JPG?raw=true "Start game")
