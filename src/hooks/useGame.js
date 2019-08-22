@@ -13,6 +13,7 @@ export function useGame(player1, player2) {
     const [moves, setMoves] = useState([]);
     const [isValidMove, setIsValidMove] = useState(null);
 
+    let isSystemPlaying = false;
     const play = function(move) {
         const lstMove = placeToken(move, activePlayer.token);
         if (lstMove) {
@@ -24,15 +25,17 @@ export function useGame(player1, player2) {
     };
 
     const startGame = (player = player1) => {
-        if (gameStatus !== GAMESTATUS.NOTSTARTED) {
-            resetBoard();
-            setMoves([]);
-            setIsValidMove(null);
-            setLastMove(null);
-        }
+        if (isSystemPlaying === false) {
+            if (gameStatus !== GAMESTATUS.NOTSTARTED) {
+                resetBoard();
+                setMoves([]);
+                setIsValidMove(null);
+                setLastMove(null);
+            }
 
-        setActivePlayer(player);
-        setGameStatus(GAMESTATUS.PLAYING);
+            setActivePlayer(player);
+            setGameStatus(GAMESTATUS.PLAYING);
+        }
     };
 
     useEffect(() => {
@@ -55,6 +58,7 @@ export function useGame(player1, player2) {
     useEffect(() => {
         async function fetchData() {
             if (activePlayer && activePlayer.type === PLAYERTYPE.SYSTEM) {
+                isSystemPlaying = true;
                 let url =
                     "https://w0ayb2ph1k.execute-api.us-west-2.amazonaws.com/production?moves=" +
                     JSON.stringify(moves);
@@ -62,12 +66,15 @@ export function useGame(player1, player2) {
                     let result = await axios.get(url);
                     setTimeout(() => {
                         play(result.data[result.data.length - 1]);
+                        isSystemPlaying = false;
                     }, 800);
                 } catch (ex) {
                     setGameStatus(GAMESTATUS.ERROR);
+                    isSystemPlaying = false;
                 }
             }
         }
+
         fetchData();
     }, [activePlayer]);
 
