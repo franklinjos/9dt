@@ -38,9 +38,11 @@ export function StatusDisplay({ activePlayer, gameStatus }) {
     let className =
         gameStatus === GAMESTATUS.WON || gameStatus === GAMESTATUS.DRAW ? "animated zoomIn" : "";
     className = gameStatus === GAMESTATUS.PLAYING ? "animated pulse" : className;
-    
+
     return (
         <DisplayContainer className={className} {...activePlayer} gameStatus={gameStatus}>
+            {gameStatus === GAMESTATUS.NOTSTARTED &&
+                "Please start game!"}
             {gameStatus === GAMESTATUS.WON &&
                 activePlayer.name + " " + gameStatus.toUpperCase() + "!"}
             {gameStatus === GAMESTATUS.PLAYING && activePlayer.name + " " + gameStatus + "!"}
