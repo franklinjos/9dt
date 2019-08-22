@@ -43,7 +43,7 @@ DropToken.defaultProps = {
     player1: { id: "player1", name: "Player 1", type: PLAYERTYPE.USER, token: TOKENTYPE.RED },
     player2: {
         id: "system1",
-        name: "98point6",
+        name: "System",
         type: PLAYERTYPE.SYSTEM,
         token: TOKENTYPE.BLUE
     }
@@ -55,7 +55,7 @@ export function DropToken({ player1, player2 }) {
         player2
     );
 
-    const className = isValidMove === false && "animated shake";
+    const className = isValidMove === false ? "animated shake" : "";
     return (
         <GameContainer>
             <Board
