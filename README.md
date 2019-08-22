@@ -33,6 +33,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### Player 1 choose to play first 
 ![Alt text](screen-shots/player1-startedfirst.JPG?raw=true "Player 1 started first")
 
+### Sytem's turn while playing
+![Alt text](screen-shots/middle-of-play.JPG?raw=true "system playing")
+
 ### Player 1 WON!
 ![Alt text](screen-shots/player1-won.JPG?raw=true "Winning board")
 
